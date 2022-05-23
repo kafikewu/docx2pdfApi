@@ -30,7 +30,6 @@ public class FilesController {
   @PostMapping("/upload")
   public ResponseEntity<Resource> uploadFile(@RequestParam("file") MultipartFile file) {
     String message = "";
-    System.out.println("Yeah you've made a post requesnt");
     try {
       storageService.save(file);
       String fileName = docx2pdf.convert(file.getOriginalFilename());
@@ -38,7 +37,7 @@ public class FilesController {
         message = "Converted the file successfully: " + fileName;
       }
       Resource convertedFile = storageService.load(fileName);
-      
+
       return ResponseEntity.status(HttpStatus.OK).body(convertedFile);
     } catch (Exception e) {
       message = "Could not upload the file: " + file.getOriginalFilename() + "!";

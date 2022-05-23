@@ -15,7 +15,6 @@ public class SpringBootUploadFilesApplication implements CommandLineRunner {
   @Override
   public void run(String... arg) throws Exception {
     storageService.deleteAll();
-    System.out.println("I need to get this over with");
     storageService.init();
   }
 }
